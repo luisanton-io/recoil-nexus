@@ -45,11 +45,13 @@ export default App;
 
 ### 2. Use hooks to get/set values: keep in mind that the GET value will return a Promise.
 
+
 | Hook | Returns |
 | :------------- | :----------- |
 | `useRecoilNexus` 	| returns getter/setter tuple 	|
 | `useRecoilNexusValue` 	| returns getter only, which will return a promise 	|
 | `useRecoilNexusSetValue` 	| returns setter function 	|
+
 
 ```tsx
 
