@@ -1,0 +1,29 @@
+{
+  "name": "recoil-nexus",
+  "version": "0.1.0",
+  "description": "A small Typescript package to peep and inject values in your Recoil atoms outside of React components.",
+  "main": "build/RecoilNexus.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "recoil",
+    "connection",
+    "outside",
+    "react",
+    "typescript",
+    "nexus"
+  ],
+  "author": "Luis Antonio Canettoli Ordoñez",
+  "license": "ISC",
+  "dependencies": {
+    "recoil": "^0.1.2",
+    "rxjs": "^6.6.3",
+    "typescript": "^4.1.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0",
+    "react": "^17.0.1"
+  }
+}
