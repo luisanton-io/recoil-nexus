@@ -1,7 +1,7 @@
 {
   "name": "recoil-nexus",
-  "version": "0.1.0",
-  "description": "A small Typescript package to peep and inject values in your Recoil atoms outside of React components.",
+  "version": "0.1.2",
+  "description": "A small Typescript package to access your Recoil atoms outside of React components.",
   "main": "build/RecoilNexus.js",
   "scripts": {
     "build": "tsc",
@@ -25,5 +25,9 @@
   "peerDependencies": {
     "@types/react": "^17.0.0",
     "react": "^17.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisanton-io/recoil-nexus"
   }
 }

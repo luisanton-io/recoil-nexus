@@ -40,22 +40,24 @@ export default function App() {
 
 
 export default App;
-
 ```
 
 ### 2. Use hooks to get/set values: keep in mind that the GET value will return a Promise.
 
+<br/>
+
 | Hook | Returns |
 | :------------- | :----------- |
-| `useRecoilNexus` 	| returns getter/setter tuple 	|
-| `useRecoilNexusValue` 	| returns getter only, which will return a promise 	|
-| `useRecoilNexusSetValue` 	| returns setter function 	|
+| `useRecoilNexus` 	| getter/setter tuple 	|
+| `useRecoilNexusValue` 	| getter only, which will return a promise 	|
+| `useRecoilNexusSetValue` 	| setter function 	|
+
+<br/>
 
 ```tsx
-
 // Loading example
 import { loadingState } from '../atoms/loadingState'
-import { useRecoilNexus, useRecoilNexusValue, useRecoilNexusSetValue } from 'recoil-nexus'
+import { useRecoilNexus } from 'recoil-nexus'
 
 export default async function toggleLoading() {
 
@@ -90,8 +92,8 @@ export const loadingState = atom({
   
 ```
 
-## Warning
-Using them on the top level of a file is fully functional, **however** it will trigger es-lint checker.
+## ESLint Warning
+Despite these hooks are fully functional, they **will trigger ESLint rules**.
 
 ```
 React Hook "useRecoilNexus" cannot be called at the top level. 
@@ -100,16 +102,23 @@ React Hooks must be called in a React function component or a custom React Hook 
 react-hooks/rules-of-hooks
 ```
 
+```
+React Hook "useRecoilNexus" is called in function "toggleLoading" which is 
+neither a React function component or a custom React Hook function  
+
+react-hooks/rules-of-hooks
+```
+
 ### To workaround this you can either:
 - import with an alias
 ```tsx
-import { useRecoilNexus as _useNexus } from 'recoil-nexus'
+import { useRecoilNexus as üseRecoilNexus } from 'recoil-nexus'
 ```
 - or disable es-lint rule for the single line:
 ```tsx
 // eslint-disable-next-line react-hooks/rules-of-hooks
 ```
-- or disable the Hooks Rule for the whole file (not recommended):
+- or disable the Hooks Rule for the whole file (...not recommended):
 ```tsx
 /* eslint-disable react-hooks/rules-of-hooks */
 ```
@@ -117,4 +126,3 @@ _____________
 ### Credits
 
 This is a Typescript port + enhancement of [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside).
-
