@@ -1,8 +1,8 @@
 # R E C O I L - N E X U S 
 ##### <div align="right">by [Luis Antonio Canettoli Ordoñez](http://luisanton.io)</div>
-If you have been using [recoil](https://recoiljs.org/) for a while, you might have faced it: outside React Components, it's not possible to get or update values from atoms.
+If you have been using **[recoil](https://recoiljs.org/)** for a while, you might have faced it: outside React Components, it's not possible to get or update values from atoms.
 
-This Typescript implementation relying on [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview) will workaround this issue and let you do so.
+This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)** will workaround this issue and let you do so.
 
 ## Install
 
@@ -96,17 +96,20 @@ React Hooks must be called in a React function component or a custom React Hook 
 react-hooks/rules-of-hooks
 ```
 
-To workaround this you can either import with an alias:
-
+### To workaround this you can either:
+- import with an alias
 ```tsx
 import { useRecoilNexus as _useNexus } from 'recoil-nexus'
 ```
-
-or disable es-lint rule (not-so-recommended):
-
+- or disable es-lint rule for the single line:
+```tsx
+// eslint-disable-next-line react-hooks/rules-of-hooks
+```
+- or disable the Hooks Rule for the whole file (not recommended):
 ```tsx
 /* eslint-disable react-hooks/rules-of-hooks */
 ```
+
 
 ### Credits
 This is a Typescript port + enhancement of [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside).
