@@ -44,7 +44,7 @@ export default App;
 
 ### 2. Use hooks to get/set values: keep in mind that the GET value will return a Promise.
 
-<br />
+\
 
 | Hook | Returns |
 | :------------- | :----------- |
@@ -52,7 +52,7 @@ export default App;
 | `useRecoilNexusValue` 	| getter only, which will return a promise 	|
 | `useRecoilNexusSetValue` 	| setter function 	|
 
-<br />
+\
 
 ```tsx
 // Loading example
