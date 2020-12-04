@@ -8,11 +8,11 @@ This Typescript implementation relying on [RxJS](https://rxjs-dev.firebaseapp.co
 
 **npm**
 
-`npm i recoil-outside`
+`npm i recoil-nexus`
 
 **yarn**
 
-`yarn add recoil-outside`
+`yarn add recoil-nexus`
 
 ## Usage
 
