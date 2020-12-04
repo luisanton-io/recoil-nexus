@@ -4,6 +4,10 @@ If you have been using **[recoil](https://recoiljs.org/)** for a while, you migh
 
 This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)** will workaround this issue and let you do so.
 
+## Live Example
+
+- [Simple Loader Example](https://codesandbox.io/s/quirky-euclid-qnvzw)
+
 ## Install
 
 **npm**
@@ -109,8 +113,8 @@ import { useRecoilNexus as _useNexus } from 'recoil-nexus'
 ```tsx
 /* eslint-disable react-hooks/rules-of-hooks */
 ```
-
-
+_____________
 ### Credits
+
 This is a Typescript port + enhancement of [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside).
 
