@@ -44,35 +44,31 @@ export default App;
 
 ### 2. Use hooks to get/set values: keep in mind that the GET value will return a Promise.
 
-\
 
 | Hook | Returns |
 | :------------- | :----------- |
-| `useRecoilNexus` 	| getter/setter tuple 	|
-| `useRecoilNexusValue` 	| getter only, which will return a promise 	|
-| `useRecoilNexusSetValue` 	| setter function 	|
+| `getRecoil` 	| getter function, returns a promise 	|
+| `setRecoil` 	| setter function |
 
-\
 
 ```tsx
 // Loading example
 import { loadingState } from '../atoms/loadingState'
-import { useRecoilNexus } from 'recoil-nexus'
+import { getRecoil, setRecoil } from 'recoil-nexus'
 
 export default async function toggleLoading() {
-
-  const [getLoading, setLoading] = useRecoilNexus(loadingState) 
-  const loading = await getLoading()
+  
+  const loading = await getRecoil(loadingState)
  
-  setLoading(!loading)
+  setRecoil(loadingState, !loading)
   
 }
 ```
 
 ```tsx
 //Loader
-import React from 'react'
-import { useRecoilNexus } from 'recoil-nexus'
+import React from "react"
+import { useRecoilValue } from "recoil"
 
 export default function Loader() {
   loading = useRecoilValue(loadingState)
@@ -90,37 +86,6 @@ export const loadingState = atom({
     default: false
 })
   
-```
-
-## ESLint Warning
-Despite these hooks are fully functional, they **will trigger ESLint rules**.
-
-```
-React Hook "useRecoilNexus" cannot be called at the top level. 
-React Hooks must be called in a React function component or a custom React Hook function  
-
-react-hooks/rules-of-hooks
-```
-
-```
-React Hook "useRecoilNexus" is called in function "toggleLoading" which is 
-neither a React function component or a custom React Hook function  
-
-react-hooks/rules-of-hooks
-```
-
-### To workaround this you can either:
-- import with an alias
-```tsx
-import { useRecoilNexus as üseRecoilNexus } from 'recoil-nexus'
-```
-- or disable es-lint rule for the single line:
-```tsx
-// eslint-disable-next-line react-hooks/rules-of-hooks
-```
-- or disable the Hooks Rule for the whole file (...not recommended):
-```tsx
-/* eslint-disable react-hooks/rules-of-hooks */
 ```
 _____________
 ### Credits

@@ -27,7 +27,7 @@ export default function RecoilNexus() {
             subject.next(value)
         }, [])
 
-    nexus.get.subscribe({ next: ({atom, subject}) => getAtom(atom, subject) })
+    nexus.get.subscribe({ next: ({ atom, subject }) => getAtom(atom, subject) })
 
     const setAtom = useRecoilCallback(({ set }) =>
         function <T>(atom: RecoilState<T>, value: T) {
@@ -40,32 +40,24 @@ export default function RecoilNexus() {
 }
 
 
-export function useRecoilNexusValue<T>(atom: RecoilState<T>): () => Promise<T> {
-    
-    return () => new Promise<T>(
+export function getRecoil<T>(atom: RecoilState<T>): Promise<T> {
+
+    return new Promise<T>(
         async function (resolve) {
             const temporary = new Subject<T>()
             temporary.subscribe({
-                next: (value) => resolve (value)
+                next: (value) => resolve(value)
             });
-            nexus.get.next({atom, subject: temporary});
+            nexus.get.next({ atom, subject: temporary });
         }
     )
 }
 
-export function useRecoilNexusSetValue<T>(atom: RecoilState<T>): (v: T) => void {
+export function setRecoil<T>(atom: RecoilState<T>, value: T) {
 
-    return (value: T) => nexus.set.next(
+    nexus.set.next(
         { atom, value } as RecoilInjection<T>
     )
 
 }
 
-export function useRecoilNexus<T>(atom: RecoilState<T>): [() => Promise<T>, (v: T) => void] {
-
-    return [
-        useRecoilNexusValue(atom),
-        useRecoilNexusSetValue(atom)
-    ]
-
-}
