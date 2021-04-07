@@ -41,23 +41,18 @@ export default function RecoilNexus() {
 
 
 export function getRecoil<T>(atom: RecoilState<T>): Promise<T> {
-
-    return new Promise<T>(
-        async function (resolve) {
-            const temporary = new Subject<T>()
-            temporary.subscribe({
-                next: (value) => resolve(value)
-            });
-            nexus.get.next({ atom, subject: temporary });
-        }
-    )
+    return new Promise<T>((resolve) => {
+        const temporary = new Subject<T>();
+        temporary.subscribe({
+            next: (value) => resolve(value)
+        });
+        nexus.get.next({ atom, subject: temporary });
+    })
 }
 
 export function setRecoil<T>(atom: RecoilState<T>, value: T) {
-
     nexus.set.next(
         { atom, value } as RecoilInjection<T>
     )
-
 }
 
