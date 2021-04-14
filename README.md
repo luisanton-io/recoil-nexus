@@ -2,6 +2,8 @@
 
 ##### <div align="right">by [Luis Antonio Canettoli Ordoñez](http://luisanton.io)</div>
 
+### Working with Recoil 0.2.0
+
 If you have been using **[recoil](https://recoiljs.org/)** for a while, you might have faced it: outside React Components, it's not possible to get or update values from atoms.
 
 This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)** will workaround this issue and let you do so.
