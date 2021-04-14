@@ -2,7 +2,7 @@
 
 ##### <div align="right">by [Luis Antonio Canettoli Ordoñez](http://luisanton.io)</div>
 
-### Working with Recoil 0.2.0
+#### Working with Recoil up to version 0.1.3
 
 If you have been using **[recoil](https://recoiljs.org/)** for a while, you might have faced it: outside React Components, it's not possible to get or update values from atoms.
 
