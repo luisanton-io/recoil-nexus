@@ -1,11 +1,10 @@
 {
   "name": "recoil-nexus",
-  "version": "0.2.2",
+  "version": "0.2.41",
   "description": "A small Typescript package to access your Recoil atoms outside of React components.",
   "main": "build/RecoilNexus.js",
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [
     "recoil",
@@ -19,15 +18,15 @@
   "license": "ISC",
   "dependencies": {
     "recoil": "^0.1.2",
-    "rxjs": "^6.6.3",
     "typescript": "^4.1.2"
-  },
-  "peerDependencies": {
-    "@types/react": "^17.0.0",
-    "react": "^17.0.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/luisanton-io/recoil-nexus"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.17",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

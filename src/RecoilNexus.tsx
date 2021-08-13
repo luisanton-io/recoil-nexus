@@ -1,8 +1,5 @@
-import {
-    RecoilState,
-    useRecoilCallback
-} from 'recoil';
-import { Subject } from 'rxjs';
+import React from 'react'
+import { RecoilState, useRecoilCallback } from 'recoil';
 
 type RecoilInjection<T> = {
     atom: RecoilState<T>,
@@ -11,48 +8,39 @@ type RecoilInjection<T> = {
 
 type RecoilRetrieval<T> = {
     atom: RecoilState<T>,
-    subject: Subject<T>
+    resolve: (value: T | PromiseLike<T>) => void
 }
 
-const nexus = {
-    get: new Subject<RecoilRetrieval<any>>(),
-    set: new Subject<RecoilInjection<any>>()
+interface Nexus {
+    get?: <T>(args: RecoilRetrieval<T>) => void
+    set?: <T>(args: RecoilInjection<T>) => void
 }
+
+const nexus: Nexus = {}
 
 export default function RecoilNexus() {
 
-    const getAtom = useRecoilCallback(({ snapshot }) =>
-        async function <T>(atom: RecoilState<T>, subject: Subject<T>) {
-            const value = await snapshot.getPromise(atom);
-            subject.next(value)
+    nexus.get = useRecoilCallback<[RecoilRetrieval<any>], void>(({ snapshot }) =>
+        function <T>({ atom, resolve }: RecoilRetrieval<T>) {
+            resolve(snapshot.getPromise(atom))
         }, [])
 
-    nexus.get.subscribe({ next: ({ atom, subject }) => getAtom(atom, subject) })
-
-    const setAtom = useRecoilCallback(({ set }) =>
-        function <T>(atom: RecoilState<T>, value: T) {
+    nexus.set = useRecoilCallback<[RecoilInjection<any>], void>(({ set }) =>
+        function <T>({ atom, value }: RecoilInjection<T>) {
             set(atom, value)
         }, [])
-
-    nexus.set.subscribe({ next: ({ atom, value }) => setAtom(atom, value) });
 
     return null
 }
 
-
 export function getRecoil<T>(atom: RecoilState<T>): Promise<T> {
     return new Promise<T>((resolve) => {
-        const temporary = new Subject<T>();
-        temporary.subscribe({
-            next: (value) => resolve(value)
-        });
-        nexus.get.next({ atom, subject: temporary });
+        nexus.get!({ atom, resolve })
     })
 }
 
 export function setRecoil<T>(atom: RecoilState<T>, value: T) {
-    nexus.set.next(
+    nexus.set!(
         { atom, value } as RecoilInjection<T>
     )
 }
-

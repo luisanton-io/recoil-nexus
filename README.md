@@ -10,7 +10,7 @@ This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.
 
 ## Live Example
 
-- [Simple Loader Example](https://codesandbox.io/s/quirky-euclid-qnvzw)
+- [Simple Loader Example](https://codesandbox.io/s/github/luisanton-io/simple-loader-with-nexus)
 
 ## Install
 
@@ -24,7 +24,7 @@ This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.
 
 ## Usage
 
-### 1. Add `RecoilNexus` as children of `RecoilRoot`
+### 1. Add `RecoilNexus` in your `RecoilRoot`
 
 ```tsx
 import React from "react";
