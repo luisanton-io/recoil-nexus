@@ -4,9 +4,9 @@
 
 #### Working with Recoil up to version 0.1.3
 
-If you have been using **[recoil](https://recoiljs.org/)** for a while, you might have faced it: outside React Components, it's not possible to get or update values from atoms.
+If you have been using **[recoil](https://recoiljs.org/)** for a while, you might have faced that outside React Components it's not possible to get or update values from atoms.
 
-This Typescript implementation relying on **[RxJS](https://rxjs-dev.firebaseapp.com/guide/overview)** will workaround this issue and let you do so.
+This Typescript implementation will workaround the issue and let you do so.
 
 ## Live Example
 
@@ -87,4 +87,5 @@ export const loadingState = atom({
 
 ### Credits
 
-This is a Typescript port + enhancement of [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside).
+Original credits to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside) Javascript implementation.
+In this Typescript package, I decided to remove RxJS and rely on promises only.
