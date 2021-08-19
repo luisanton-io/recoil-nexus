@@ -85,5 +85,5 @@ export const loadingState = atom({
 
 ### Credits
 
-Original credits to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside) Javascript implementation.
-In this Typescript package, I decided to remove RxJS and rely on promises only.
+Kudos to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside) original idea and Javascript implementation.
+In this Typescript port/enhancement, I decided to remove RxJS and rely on native Recoil promises only.

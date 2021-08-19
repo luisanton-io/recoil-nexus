@@ -1,46 +1,28 @@
-import React from 'react'
 import { RecoilState, useRecoilCallback } from 'recoil';
 
-type RecoilInjection<T> = {
-    atom: RecoilState<T>,
-    value: T
-}
-
-type RecoilRetrieval<T> = {
-    atom: RecoilState<T>,
-    resolve: (value: T | PromiseLike<T>) => void
-}
-
 interface Nexus {
-    get?: <T>(args: RecoilRetrieval<T>) => void
-    set?: <T>(args: RecoilInjection<T>) => void
+    get?: <T>(atom: RecoilState<T>) => Promise<T>
+    set?: <T>(recoilVal: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) => void
 }
 
 const nexus: Nexus = {}
 
 export default function RecoilNexus() {
 
-    nexus.get = useRecoilCallback<[RecoilRetrieval<any>], void>(({ snapshot }) =>
-        function <T>({ atom, resolve }: RecoilRetrieval<T>) {
-            resolve(snapshot.getPromise(atom))
+    nexus.get = useRecoilCallback<[atom: RecoilState<any>], Promise<any>>(({ snapshot }) =>
+        function <T>(atom: RecoilState<T>) {
+            return snapshot.getPromise(atom)
         }, [])
 
-    nexus.set = useRecoilCallback<[RecoilInjection<any>], void>(({ set }) =>
-        function <T>({ atom, value }: RecoilInjection<T>) {
-            set(atom, value)
-        }, [])
+    nexus.set = useRecoilCallback(({ set }) => set, [])
 
     return null
 }
 
 export function getRecoil<T>(atom: RecoilState<T>): Promise<T> {
-    return new Promise<T>((resolve) => {
-        nexus.get!({ atom, resolve })
-    })
+    return nexus.get!(atom)
 }
 
 export function setRecoil<T>(atom: RecoilState<T>, value: T) {
-    nexus.set!(
-        { atom, value } as RecoilInjection<T>
-    )
+    nexus.set!(atom, value)
 }
