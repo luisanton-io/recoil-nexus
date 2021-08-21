@@ -46,7 +46,8 @@ export default App;
 
 | Method      | Returns                                                   |
 | :---------- | :-------------------------------------------------------- |
-| `getRecoil` | getter function, returns a promise                        |
+| `getRecoil` | getter function |
+| `getRecoilPromise` | getter function, returns a promise. To be used with asynchronous selectors. |
 | `setRecoil` | setter function, pass value to be set as second parameter |
 
 ```tsx
@@ -54,8 +55,8 @@ export default App;
 import { loadingState } from "../atoms/loadingState";
 import { getRecoil, setRecoil } from "recoil-nexus";
 
-export default async function toggleLoading() {
-  const loading = await getRecoil(loadingState);
+export default function toggleLoading() {
+  const loading = getRecoil(loadingState);
   setRecoil(loadingState, !loading);
 }
 ```
@@ -85,5 +86,5 @@ export const loadingState = atom({
 
 ### Credits
 
-Kudos to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside) original idea and Javascript implementation.
-In this Typescript port/enhancement, I decided to remove RxJS and rely on native Recoil promises only.
+Kudos to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://www.npmjs.com/package/recoil-outside) original idea and Javascript implementation.  
+In this Typescript port/enhancement, I decided to remove RxJS and rely on native Recoil promises and loadables only.
