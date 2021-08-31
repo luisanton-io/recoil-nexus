@@ -33,6 +33,6 @@ export function getRecoilPromise<T>(atom: RecoilState<T>): Promise<T> {
     return nexus.getPromise!(atom)
 }
 
-export function setRecoil<T>(atom: RecoilState<T>, value: T) {
-    nexus.set!(atom, value)
+export function setRecoil<T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
+    nexus.set!(atom, valOrUpdater)
 }
