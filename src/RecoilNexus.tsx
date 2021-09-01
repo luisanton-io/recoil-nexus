@@ -1,9 +1,9 @@
-import { RecoilValue, useRecoilCallback } from 'recoil';
+import { RecoilValue, RecoilState, useRecoilCallback } from 'recoil';
 
 interface Nexus {
     get?: <T>(atom: RecoilValue<T>) => T
     getPromise?: <T>(atom: RecoilValue<T>) => Promise<T>
-    set?: <T>(atom: RecoilValue<T>, valOrUpdater: T | ((currVal: T) => T)) => void
+    set?: <T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) => void
 }
 
 const nexus: Nexus = {}
@@ -33,6 +33,6 @@ export function getRecoilPromise<T>(atom: RecoilValue<T>): Promise<T> {
     return nexus.getPromise!(atom)
 }
 
-export function setRecoil<T>(atom: RecoilValue<T>, valOrUpdater: T | ((currVal: T) => T)) {
+export function setRecoil<T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
     nexus.set!(atom, valOrUpdater)
 }
