@@ -4,6 +4,7 @@ interface Nexus {
     get?: <T>(atom: RecoilValue<T>) => T
     getPromise?: <T>(atom: RecoilValue<T>) => Promise<T>
     set?: <T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) => void
+    reset?: (atom: RecoilState<any>) => void
 }
 
 const nexus: Nexus = {}
@@ -22,6 +23,8 @@ export default function RecoilNexus() {
 
     nexus.set = useRecoilCallback(({ set }) => set, [])
 
+    nexus.reset = useRecoilCallback(({ reset }) => reset, [])
+
     return null
 }
 
@@ -35,4 +38,8 @@ export function getRecoilPromise<T>(atom: RecoilValue<T>): Promise<T> {
 
 export function setRecoil<T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
     nexus.set!(atom, valOrUpdater)
+}
+
+export function resetRecoil(atom: RecoilState<any>) {
+    nexus.reset!(atom)
 }
