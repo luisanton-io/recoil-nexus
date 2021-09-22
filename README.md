@@ -49,6 +49,7 @@ export default App;
 | `getRecoil` | getter function |
 | `getRecoilPromise` | getter function, returns a promise. To be used with asynchronous selectors. |
 | `setRecoil` | setter function, pass value to be set as second parameter |
+| `resetRecoil` | pass atom as parameter to reset to default value |
 
 ```tsx
 // Loading example
