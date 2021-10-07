@@ -15,7 +15,7 @@
     "nexus"
   ],
   "author": "Luis Antonio Canettoli Ordoñez",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "recoil": "^0.4.0"
   },
