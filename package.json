@@ -1,6 +1,6 @@
 {
   "name": "recoil-nexus",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "A small Typescript package to access your Recoil atoms outside of React components.",
   "main": "build/RecoilNexus.js",
   "scripts": {
@@ -16,8 +16,8 @@
   ],
   "author": "Luis Antonio Canettoli Ordoñez",
   "license": "MIT",
-  "dependencies": {
-    "recoil": "^0.5.0"
+  "peerDependencies": {
+    "recoil": "^0.2.0"
   },
   "repository": {
     "type": "git",
