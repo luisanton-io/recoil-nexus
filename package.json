@@ -17,7 +17,7 @@
   "author": "Luis Antonio Canettoli Ordoñez",
   "license": "MIT",
   "peerDependencies": {
-    "recoil": "^0.2.0"
+    "recoil": ">=0.2.0"
   },
   "repository": {
     "type": "git",
