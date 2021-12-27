@@ -88,13 +88,6 @@ export const loadingState = atom({
 
 When testing in [Jest](https://jestjs.io), we need to set `"transformIgnorePatterns": []` in our jest config, otherwise a `SyntaxError: Cannot use import statement outside a module` will cause the tests to fail. This can be acheived one of three ways, depending on how you are defining your jest config:
 
-- in `setupTests.js` (recommended for `create-react-app` based applications).
-
-```
-const config = {
-    transformIgnorePatterns: []
-}
-
 export default config
 ```
 - in `jest.config.js`
