@@ -82,10 +82,28 @@ export const loadingState = atom({
   default: false,
 });
 ```
+## Test Setup
 
+### Jest
+
+When testing in [Jest](https://jestjs.io), we need to set `"transformIgnorePatterns": []` in our jest config, otherwise a `SyntaxError: Cannot use import statement outside a module` will cause the tests to fail. This can be acheived one of the following ways, depending on how you are defining your jest config:
+
+export default config
+```
+- in `jest.config.js`
+```
+"transformIgnorePatterns": []
+```
+
+- in the top level of the `package.json`
+```
+"jest": {
+  "transformIgnorePatterns": []
+},
+```
 ---
 
 ### Credits
 
-Kudos to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://github.com/VeepCream/recoil-outside) original idea and Javascript implementation.  
+Kudos to [VeepCream](https://github.com/VeepCream)'s [recoil-outside](https://github.com/VeepCream/recoil-outside) original idea and Javascript implementation.
 In this Typescript port/enhancement, I decided to remove RxJS and rely on native Recoil promises and loadables only.
