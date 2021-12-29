@@ -1,6 +1,6 @@
 {
   "name": "recoil-nexus",
-  "version": "0.3.11",
+  "version": "0.3.14",
   "description": "A small Typescript package to access your Recoil atoms outside of React components.",
   "main": "build/RecoilNexus.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "@types/react": ">=16.8.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "typescript": "^4.1.0"
+    "typescript": ">=4.1.0"
   },
   "repository": {
     "type": "git",
