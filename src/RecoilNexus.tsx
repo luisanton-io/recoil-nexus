@@ -21,7 +21,15 @@ export default function RecoilNexus() {
             return snapshot.getPromise(atom)
         }, [])
 
-    nexus.set = useRecoilCallback(({ set }) => set, [])
+    nexus.set = useRecoilCallback(({ snapshot, gotoSnapshot }) => {
+        return function <T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
+            const newSnapshot = snapshot.map(mutable => {
+                mutable.set(atom, valOrUpdater)
+            })
+    
+            gotoSnapshot(newSnapshot)
+        }
+    }, [])
 
     nexus.reset = useRecoilCallback(({ reset }) => reset, [])
 
