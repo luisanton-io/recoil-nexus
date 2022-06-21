@@ -1,10 +1,11 @@
 {
   "name": "recoil-nexus",
-  "version": "0.3.16",
+  "version": "0.3.18",
   "description": "A small Typescript package to access your Recoil atoms outside of React components.",
   "main": "build/RecoilNexus.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "keywords": [
     "recoil",
