@@ -43,7 +43,10 @@ export function getRecoilPromise<T>(atom: RecoilValue<T>): Promise<T> {
 }
 
 export function setRecoil<T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
-    nexus.set!(atom, valOrUpdater)
+    if (!nexus.set) {
+        console.error("Recoil Nexus is not ready to setRecoil states, please wait until React setups RecoilNexus")
+    }
+    nexus.set?.(atom, valOrUpdater)
 }
 
 export function resetRecoil(atom: RecoilState<any>) {
