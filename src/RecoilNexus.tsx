@@ -1,4 +1,5 @@
-import { RecoilValue, RecoilState, useRecoilCallback } from 'recoil';
+import { useGetRecoilValueInfo_UNSTABLE } from 'recoil';
+import { RecoilState, RecoilValue, useRecoilCallback, useRecoilTransaction_UNSTABLE } from 'recoil';
 
 interface Nexus {
     get?: <T>(atom: RecoilValue<T>) => T
@@ -21,11 +22,18 @@ export default function RecoilNexus() {
             return snapshot.getPromise(atom)
         }, [])
 
-    nexus.set = useRecoilCallback(({ transact_UNSTABLE }) => {
-        return function <T>(atom: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
-            transact_UNSTABLE(({ set }) => {
-                set(atom, valOrUpdater)
-            })
+
+    const getInfo = useGetRecoilValueInfo_UNSTABLE()
+    const transact = useRecoilTransaction_UNSTABLE(({ set }) => set)
+
+    nexus.set = useRecoilCallback(({ set }) => {
+        return function <T>(recoilState: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
+            const update = {
+                "atom": transact,
+                "selector": set
+            }[getInfo(recoilState).type]
+
+            update(recoilState, valOrUpdater)
         }
     }, [])
 
