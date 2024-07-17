@@ -48,40 +48,29 @@ export default App;
 | :---------- | :-------------------------------------------------------- |
 | `getRecoil` | getter function |
 | `getRecoilPromise` | getter function, returns a promise. To be used with asynchronous selectors. |
-| `setRecoil` | setter function, pass value to be set as second parameter |
+| `setRecoil` | setter function, pass value to be set or updater function as second parameter |
 | `resetRecoil` | pass atom as parameter to reset to default value |
 
+Read current state:
 ```tsx
-// Loading example
-import { loadingState } from "../atoms/loadingState";
-import { getRecoil, setRecoil } from "recoil-nexus";
+const loading = getRecoil(loadingState);
+```
 
-export default function toggleLoading() {
-  const loading = getRecoil(loadingState);
-  setRecoil(loadingState, !loading);
+Setting the new state like this is not inherently wrong: 
+```tsx
+setRecoil(loadingState, !loading);
+```
+However, if the new state depends on the previous one (like in this case), preferably use an
+updater function to correctly batch React state updates, as reading and
+updating the state at the same time could lead to [unexpected results](https://github.com/luisanton-io/recoil-nexus/issues/33).
+```tsx
+import { setRecoil } from "recoil-nexus"
+
+export function toggleLoader() {
+  setRecoil(loadingState, loading => !loading)
 }
 ```
 
-```tsx
-//Loader
-import React from "react";
-import { useRecoilValue } from "recoil";
-
-export default function Loader() {
-  loading = useRecoilValue(loadingState);
-  return loading ? <h3>Loading...</h3> : null;
-}
-```
-
-```tsx
-//Atom
-import { atom } from "recoil";
-
-export const loadingState = atom({
-  key: "LOADING",
-  default: false,
-});
-```
 ## Test Setup
 
 ### Jest
